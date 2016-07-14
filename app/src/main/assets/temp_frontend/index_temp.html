@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Gutes Auge</title>
+
+  <!-- Bootstrap -->
+  <link href="../frontend/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../frontend/css/Mycss.css" rel="stylesheet">
+  <link href="../frontend/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <script src="goodeyeAPI.js"/></script>
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+      <script>
+
+var CANVAS_RESIZE_MODE=1; //0=locked, 1=stretch, 2=resize
+
+var CANVAS_WIDTH=200;
+var CANVAS_HEIGHT=150;
+
+window.onload=function( e ){
+
+  var canvas=document.getElementById( "myCanvas" );
+  
+  //var splitter=document.getElementById( "Splitter" );
+  //var console=document.getElementById( "GameConsole" );
+  
+  var mouseDown=false;
+  var startY=0;
+  var canvasH=CANVAS_HEIGHT;
+  var cmousemove=null;
+  var cmouseup=null;
+  var cmouseout=null;
+  var fscreen=true;
+
+  canvas.width=CANVAS_WIDTH;
+  canvas.height=CANVAS_HEIGHT;
+
+  function eatEvent( e ){
+    if( e.stopPropagation ){
+      e.stopPropagation();
+      e.preventDefault();
+    }else{
+      e.cancelBubble=true;
+      e.returnValue=false;
+    }
+  }
+  
+  function requestFullscreen(){
+    var rfs=canvas.requestFullscreen || canvas.webkitRequestFullScreen || canvas.mozRequestFullScreen;
+    if( rfs ) rfs.call( canvas );
+  }
+  
+  function updateSize(){
+    canvas.style.height=window.innerHeight+"px";
+    canvas.style.width=window.innerWidth+"px";
+    canvas.height=window.innerHeight;
+    canvas.width=window.innerWidth;
+    canvas.parentNode.style.height=window.innerHeight;
+    canvas.parentNode.style.width=window.innerWidth;
+  /*
+    if( fscreen ){
+      canvasH=window.innerHeight;
+    }else if( canvasH<0 ){
+      canvasH=0;
+    }else if( canvasH+splitter.clientHeight>=window.innerHeight ){
+      canvasH=window.innerHeight-splitter.clientHeight;
+    }
+    
+    switch( CANVAS_RESIZE_MODE ){
+    case 0:
+      canvas.parentNode.style.height=canvasH+"px";
+      break;
+    case 1:
+      canvas.style.height=canvasH+"px";
+      break;
+    case 2:
+      canvas.width=document.body.clientWidth;
+      canvas.height=canvasH;
+      canvas.style.height=canvasH+"px";
+      break;
+    }
+    console.style.height=(fscreen ? 0 : window.innerHeight-splitter.clientHeight-canvasH)+"px";
+
+    //Note! Any resize code that modifies canvas.width/canvas.height/canvas.style.width/canvas.style.height should call this to update canvas...
+    if( canvas.updateSize ) canvas.updateSize();
+  */
+  }
+  
+  canvas.onfullscreenchange=function( e ){
+    fscreen=(document.fullscreenElement==canvas);
+    updateSize();
+  }
+  
+  canvas.onwebkitfullscreenchange=function( e ){
+    fscreen=(document.webkitFullscreenElement==canvas);
+    updateSize();
+  }
+  
+  canvas.onmozfullscreenchange=function( e ){
+    fscreen=(document.mozFullscreenElement==canvas);
+    updateSize();
+  }
+  
+  /*
+  splitter.onmousedown=function( e ){
+    mouseDown=true;
+    startY=e.clientY;
+    cmousemove=canvas.onmousemove;
+    cmouseup=canvas.onmouseup;
+    cmouseout=canvas.onmouseout;
+    canvas.onmousemove=null;
+    canvas.onmouseup=null;
+    canvas.onmouseout=null;
+    eatEvent( e );
+  }
+  */
+  window.onmousemove=function( e ){
+    if( mouseDown ){
+      var dy=e.clientY-startY;
+      startY+=dy;
+      canvasH+=dy;
+      updateSize();
+      eatEvent( e );
+    }
+  }
+  
+  window.onmouseup=function( e ){
+    if( mouseDown ){
+      canvas.onmousemove=cmousemove;
+      canvas.onmouseup=cmouseup;
+      canvas.onmouseout=cmouseout;
+      mouseDown=false;
+      eatEvent( e );
+      /*
+      if( canvasH+splitter.clientHeight>=window.innerHeight ) requestFullscreen();
+      */
+    }
+  }
+  
+  window.onresize=function( e ){
+    updateSize();
+  }
+  
+  updateSize();
+  
+  BBMonkeyGame.Main( canvas );
+}
+
+function ShowMainMenu() {
+  //alert("test");
+  goodeyeAPI.openStartPage()
+}
+</script>
+    </head>
+    <body>
+     <!-- Fluid Content -->
+     <div class="container-fluid">
+      <!-- Header -->
+       <!-- Header End -->
+      <div class="row">      
+        <div><canvas id="myCanvas" width=200 height=150 tabindex=1 style="position: absolute; left: 0%; top: 0%;"></canvas></div>
+<!--
+<div><canvas id="myCanvas" width=200 height=150 tabindex=1 style="position: absolute; left: 0%; top: 0%; width: 100%; height: 100%;"></canvas></div>
+<div><canvas id="myCanvas" width=200 height=150 tabindex=1 style="position: absolute; left: 50%; top: 30%; margin-left: -150px; margin-top: -75px;"></canvas></div>
+
+<div id="Splitter" class=splitter></div>
+<div><textarea id="GameConsole" readonly></textarea></div>
+-->
+
+
+
+    </div>
+
+
+   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+   <script src="../../../../../frontend/js/jquery-1.11.3.min.js"></script>
+   <!-- Include all compiled plugins (below), or include individual files as needed -->
+   <script src="../../../../../frontend/js/bootstrap.min.js"></script>
+ <script language="javascript" src="main.js">Javascript not supported!</script>
+ </body>
+ </html>

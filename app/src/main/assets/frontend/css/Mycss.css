@@ -1,5 +1,8 @@
 /* Das gute Auge */
 
+
+
+
 /* Schrift */
 @font-face { font-family: 'source-sans'; src: url('../fonts/Source_Sans_Pro/SourceSansPro-Regular.ttf') format('truetype'); }
 @font-face { font-family: 'source-sans'; src: url('../fonts/Source_Sans_Pro/SourceSansPro-Italic.ttf') format('truetype'); font-style: italic; } 
@@ -20,6 +23,10 @@ h1 {
 h3 {
     color:#fff;
     text-transform: uppercase;
+}
+h4 {
+    color:#000;
+    font-weight: bold;
 }
 /* Rows */
 div.row {
@@ -78,6 +85,7 @@ div.text-area{
 	font-size:1.5em;
     padding: 5px 5px;
     background: rgba(255,255,255,1.0);
+    text-align: center;
 }
 
 p.bg-success {
@@ -207,8 +215,12 @@ ul.none {
     color: #fff;
 }
 .btn-group {
-    position: absolute;
-    float: right;
+    position: relative;
+    padding-left: 100px;    
+}
+
+input {
+    color: #000;
 }
 
 /* Awesome Icons */
@@ -220,6 +232,100 @@ span.icon:before {
 .fa i{
 	float: left;
 }
+
+/* Modal */
+
+html.remodal-is-locked {
+  overflow: hidden;
+
+  -ms-touch-action: none;
+  touch-action: none;
+}
+
+/* Anti FOUC */
+
+.remodal,
+[data-remodal-id] {
+  display: none;
+}
+
+/* Necessary styles of the overlay */
+
+.remodal-overlay {
+  position: fixed;
+  z-index: 9999;
+  top: -5000px;
+  right: -5000px;
+  bottom: -5000px;
+  left: -5000px;
+
+  display: none;
+}
+
+/* Necessary styles of the wrapper */
+
+.remodal-wrapper {
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: none;
+  overflow: auto;
+
+  text-align: center;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+.remodal-wrapper:after {
+  display: inline-block;
+
+  height: 100%;
+  margin-left: -0.05em;
+
+  content: "";
+}
+
+/* Fix iPad, iPhone glitches */
+
+.remodal-overlay,
+.remodal-wrapper {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Necessary styles of the modal dialog */
+
+.remodal {
+  position: relative;
+
+  outline: none;
+
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.remodal-is-initialized {
+  /* Disable Anti-FOUC */
+  display: inline-block;
+}
+
+.remodal-bg.with-red-theme.remodal-is-opening,
+    .remodal-bg.with-red-theme.remodal-is-opened {
+      filter: none;
+    }
+
+    .remodal-overlay.with-red-theme {
+      background-color: #f44336;
+    }
+
+    .remodal.with-red-theme {
+      background: #fff;
+    }
 
 /* Views */
 

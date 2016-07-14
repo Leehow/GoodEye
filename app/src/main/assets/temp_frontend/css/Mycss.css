@@ -105,7 +105,9 @@ div.checkbox{
 ul.none {
     list-style-type: none;
 }
-
+.form-control {
+    float left;
+}
 
 /* Bilder */
 #myCarousel {

@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>Gutes Auge</title>
+  <title>Das Gute Auge</title>
 
   <!-- Bootstrap -->
   <link href="../../../../../frontend/css/bootstrap.min.css" rel="stylesheet">
@@ -19,16 +19,14 @@
       <![endif]-->
     </head>
     <body>
-      <!-- load api -->
-      <script src="goodeyeAPI.js"/></script>
-      <!-- content goes here -->
      <!-- Fluid Content -->
      <div class="container-fluid">
+
       <!-- Header -->
       <div class="row header">
         <p class="navi">
           <!--Home Button -->
-          <a class="btn btn-success" href="index.html" role="button">
+          <a class="btn btn-success" role="button" onclick="goodeyeAPI.startPage()">
             <i class="fa fa-home fa-1x"></i> Start
           </a>
         </p>
@@ -38,6 +36,8 @@
           <span class="logo"><i class="fa fa-eye"></i></span>
         </p>
       </div> <!-- Header End -->
+
+       <!--Content -->
       <div class="row">      
         <div class="col-md-6">
           <div id="myCarousel" class="carousel slide">
@@ -46,6 +46,7 @@
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
             <li data-target="#myCarousel" data-slide-to="1"></li>
             <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
           </ol>   
           <!--Carousel item -->
           <div class="carousel-inner">
@@ -68,9 +69,9 @@
          </div>
          <!-- Carousel Navigator-->
          <a class="carousel-control left" href="#myCarousel" 
-         data-slide="prev">&lsaquo;</a>
+         data-slide="prev"><i class="fa fa-angle-left fa-2x"></i></a>
          <a class="carousel-control right" href="#myCarousel" 
-         data-slide="next">&rsaquo;</a>
+         data-slide="next"><i class="fa fa-angle-right fa-2x"></i></a>
        </div>
      </div>
      <div class="col-md-6">
@@ -80,27 +81,33 @@
           Ein Farbreiz entsteht, wenn Licht in unser Auge fällt &mdash; entweder direkt von einer Lichtquelle oder indirekt über die Oberfläche eines Gegenstandes.</p>
         </div>
       </div>
-    </div>
+    </div><!--Content End -->
+
+
+    <!--Footer -->
     <div class="row footer">
       <div class="col-md-12">
         <p class="text-left">
-         <a class="btn btn-success" href="Ch_List_Book1.html" role="button">
-           <span class="glyphicon glyphicon glyphicon-chevron-left"></span> Back
+         <a class="btn btn-success" role="button" onclick="goodeyeAPI.previousPage()">
+           <i class="fa fa-angle-left fa-1x"></i>  Zurück
            <!--Back Button -->
          </a>
        </p>
        <p class="text-right">
          <a class="btn btn-success" role="button" onclick="goodeyeAPI.nextPage()">
-           <span class="glyphicon glyphicon glyphicon-chevron-right"></span> Next
+          Weiter <i class="fa fa-angle-right"></i>
            <!--Next Button -->
          </a>
        </p>
      </div>
    </div>
+   <!--Footer End -->
 
    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
    <script src="../../../../../frontend/js/jquery-1.11.3.min.js"></script>
    <!-- Include all compiled plugins (below), or include individual files as needed -->
    <script src="../../../../../frontend/js/bootstrap.min.js"></script>
+   <!-- GoodEye API -->
+   <script src="../../../../../frontend/js/goodeyeAPI.js"/></script>
  </body>
  </html>

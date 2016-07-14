@@ -1,4 +1,4 @@
 bookname: Farbe
 chapter : Wahrnehmung
-chapter : Farbraum
+chapter : foo
 
